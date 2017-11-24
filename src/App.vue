@@ -1,5 +1,6 @@
 <template>
-    <div id="app">1
+    <div id="app">
+        <div class="test">1</div>
         <keep-alive>
             <router-view></router-view>
         </keep-alive>
@@ -17,6 +18,10 @@
 
     html, body {
         height: 100%;
+    }
+
+    .test {
+        font-size: 15px;/*px*/
     }
 
     #app {
