@@ -9,7 +9,7 @@ module.exports = {
             ? config.build.productionSourceMap
             : config.dev.cssSourceMap,
         extract: isProduction,
-        px2rem: true
+        px2rem: {threeVersion: true}
     }),
     transformToRequire: {
         video: 'src',

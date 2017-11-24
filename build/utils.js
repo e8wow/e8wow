@@ -36,7 +36,7 @@ exports.cssLoaders = function (options) {
         if (options.px2rem) {
             loaders.push({
                 loader: 'px2rem-loader',
-                options: {remUnit: 75, threeVersion: true}
+                options: options.px2rem
             })
         }
 
