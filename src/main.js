@@ -2,7 +2,7 @@ import 'core-js/es6/promise'
 // import 'core-js/es6/object'
 import Vue from 'vue'
 import App from './App.vue'
-import router from './config/router'
+import router from './config/router/router.config'
 import axios from './config/axios/axios.config'
 
 /* flexible */
