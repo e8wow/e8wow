@@ -4,5 +4,6 @@ const Index = (resolve) => {
 
 export default {
     path: '/',
-    components: Index
+    component: Index,
+    children: []
 }

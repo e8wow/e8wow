@@ -24,19 +24,20 @@ exports.cssLoaders = function (options) {
     // generate loader string to be used with extract text plugin
     function generateLoaders (loader, loaderOptions) {
         const loaders = [cssLoader]
+        if (options.px2rem) {
+            loaders.push({
+                loader: 'px2rem-loader',
+                options: options.px2rem
+            })
+
+        }
+
         if (loader) {
             loaders.push({
                 loader: loader + '-loader',
                 options: Object.assign({}, loaderOptions, {
                     sourceMap: options.sourceMap
                 })
-            })
-        }
-
-        if (options.px2rem) {
-            loaders.push({
-                loader: 'px2rem-loader',
-                options: options.px2rem
             })
         }
 

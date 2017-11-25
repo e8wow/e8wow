@@ -19,7 +19,9 @@
         bottom: 0;
         left: 0;
         width: 100%;
-        height: 90px;
-        background-color: $primary-color;
+        height: 70px;
+        padding: 20px 0;
+        background-color: #eee;
+        border-top: 1px solid #ccc; /*px*/
     }
 </style>
