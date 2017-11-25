@@ -59,7 +59,7 @@
             border-radius: 750px;
             margin-left: 25px; /*px*/
             input[type=search] {
-                padding: 15px 25px;
+                padding: 15px 25px; /*px*/
                 width: 100%;
                 color: #fff;
                 text-align: center;
@@ -76,7 +76,7 @@
                 &-icon {
                     width: 35px;
                     margin-right: 15px; /*px*/
-                    margin-left: -30px;
+                    margin-left: -30px; /*px*/
                 }
             }
         }

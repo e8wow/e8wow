@@ -29,7 +29,7 @@
     }
 
     ::selection {
-        color: #00a9b6;
+        color: $cyan-color;
         background-color: $primary-color;
     }
 </style>
