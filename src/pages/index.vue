@@ -9,15 +9,15 @@
                 首页
             </tab-bar-item>
             <tab-bar-item path="/classification">
-                <img slot="icon" src="../assets/icons/home.png" alt="">
+                <img slot="icon" src="../assets/icons/classification.png" alt="">
                 分类
             </tab-bar-item>
             <tab-bar-item path="/message">
-                <img slot="icon" src="../assets/icons/home.png" alt="">
+                <img slot="icon" src="../assets/icons/message.png" alt="">
                 消息
             </tab-bar-item>
             <tab-bar-item path="/personal-center">
-                <img slot="icon" src="../assets/icons/home.png" alt="">
+                <img slot="icon" src="../assets/icons/personal-center.png" alt="">
                 个人中心
             </tab-bar-item>
         </tab-bar>

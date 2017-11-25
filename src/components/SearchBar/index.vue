@@ -74,7 +74,8 @@
                 align-items: center;
                 &-icon {
                     width: 35px;
-                    margin-right: 10px; /*px*/
+                    margin-right: 15px; /*px*/
+                    margin-left: -30px;
                 }
             }
         }
