@@ -19,6 +19,13 @@
 
     #app {
         min-height: 100%;
+        position: relative;
+    }
+
+    input {
+        appearance: none;
+        background-color: transparent;
+        border-color: transparent;
     }
 
     ::selection {

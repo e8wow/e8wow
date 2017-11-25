@@ -1,26 +1,28 @@
 <template>
-    <div class="e8wow-tab-bar">
+    <div :class="prefixCls">
         <slot></slot>
     </div>
 </template>
 
 <script>
-
+    export default {
+        props: {
+            prefixCls: {
+                type: String,
+                default: 'e8ui-tab-bar'
+            }
+        }
+    }
 </script>
 
 <style lang="scss">
-    @import "../../styles/base/base";
-
-    .e8wow-tab-bar {
+    $prefixCls: 'e8ui-tab-bar';
+    .#{$prefixCls} {
         display: flex;
         align-items: center;
         justify-content: space-around;
-        position: fixed;
-        bottom: 0;
-        left: 0;
         width: 100%;
-        height: 70px;
-        padding: 20px 0;
+        height: 90px;
         background-color: #eee;
         border-top: 1px solid #ccc; /*px*/
     }
