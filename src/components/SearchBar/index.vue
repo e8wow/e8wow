@@ -2,7 +2,7 @@
     <div :class="prefixCls">
         <div :class="`${prefixCls}-address`">珠海</div>
         <div :class="`${prefixCls}-search-box`">
-            <div v-if="!isFocus&&!text" :class="`${prefixCls}-search-box-placeholder`">
+            <div v-show="!isFocus&&!text" :class="`${prefixCls}-search-box-placeholder`">
                 <img :class="`${prefixCls}-search-box-placeholder-icon`" src="./assets/search.png" alt="">搜索宠物种类/宠物名
             </div>
             <input v-model="text" @focus="focus" @blur="blur" ref="search" type="search">
