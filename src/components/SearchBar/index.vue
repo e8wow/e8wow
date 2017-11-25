@@ -51,9 +51,6 @@
         }
         &-search-box {
             flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             position: relative;
             background-color: $cyan-1;
             border-radius: 750px;
@@ -69,6 +66,9 @@
             }
             &-placeholder {
                 position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate3d(-50%, -50%, 0);
                 color: #fff;
                 display: flex;
                 align-items: center;
