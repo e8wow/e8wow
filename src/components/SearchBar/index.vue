@@ -1,11 +1,12 @@
 <template>
     <div :class="prefixCls">
-        <div :class="`${prefixCls}-address`">珠海</div>
+        <div :class="`${prefixCls}-address`">{{address}}</div>
         <div :class="`${prefixCls}-search-box`">
-            <div v-show="!isFocus&&!text" :class="`${prefixCls}-search-box-placeholder`">
-                <img :class="`${prefixCls}-search-box-placeholder-icon`" src="./assets/search.png" alt="">搜索宠物种类/宠物名
+            <div v-show="placeholder&&!isFocus&&!value" :class="`${prefixCls}-search-box-placeholder`">
+                <img :class="`${prefixCls}-search-box-placeholder-icon`" src="./assets/search.png" alt="搜索">{{placeholder}}
             </div>
-            <input v-model="text" @focus="focus" @blur="blur" ref="search" type="search">
+            <input @input="input" :value="value" @focus="isFocus=true" @blur="isFocus=false" ref="search"
+                   type="search">
         </div>
     </div>
 </template>
@@ -16,20 +17,19 @@
             prefixCls: {
                 type: String,
                 default: 'e8ui-search-bar'
-            }
+            },
+            address: String,
+            placeholder: String,
+            value: String
         },
         data () {
             return {
-                isFocus: false,
-                text: ''
+                isFocus: false
             }
         },
         methods: {
-            focus () {
-                this.isFocus = true
-            },
-            blur () {
-                this.isFocus = false
+            input (event) {
+                this.$emit('input', event.target.value)
             }
         }
     }
