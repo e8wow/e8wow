@@ -1,7 +1,7 @@
 <template>
     <div class="e8wow-home">
         <search-bar v-model="searchText" address="珠海" placeholder="搜索宠物种类/宠物名"/>
-        <scroll-view class="scroll-view-test">
+        <scroll-view refreshMode loadMode class="scroll-view-test">
             <p v-for="i in 500">{{i}}</p>
         </scroll-view>
     </div>

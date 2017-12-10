@@ -1,8 +1,9 @@
 <template>
     <swiper ref="swiper" :class="prefixCls" :options="options">
-        <div :class="`${prefixCls}-refresh`">下拉刷新</div>
+        <div v-if="refreshMode" :class="`${prefixCls}-refresh`">下拉刷新</div>
         <swiper-slide :class="`${prefixCls}-container`">
             <slot></slot>
+            <div v-if="loadMode" :class="`${prefixCls}-load`">加载中...</div>
         </swiper-slide>
         <div class="swiper-scrollbar" slot="scrollbar"></div>
     </swiper>
@@ -19,7 +20,9 @@
             prefixCls: {
                 type: String,
                 default: 'e8ui-scroll-view'
-            }
+            },
+            refreshMode: Boolean,
+            loadMode: Boolean
         },
         computed: {
             swiper () {
@@ -27,6 +30,12 @@
             }
         },
         data () {
+            const load = () => {
+                if (this.loadMode && this.swiper.wrapperEl.clientHeight + this.swiper.translate - this.swiper.height - window.lib.flexible.dpr * 0.5 * 80 <= 0) {
+                    console.log('//TODO 加载...')
+                    this.$emit('loading')
+                }
+            }
             return {
                 options: {
                     slidesPerView: 'auto',
@@ -35,19 +44,21 @@
                     setWrapperSize: true,
                     roundLengths: true,
                     autoHeight: true,
+                    freeModeMomentumBounce: false,
                     scrollbar: {
                         el: '.swiper-scrollbar'
                     },
                     on: {
-                        touchEnd: function () {
-                            if (this.translate > window.lib.flexible.dpr * 0.5 * 120) {
-                                this.setTransition(this.params.speed)
-                                this.setTranslate(window.lib.flexible.dpr * 0.5 * 80)
-                                this.touchEventsData.isTouched = false
+                        touchEnd: () => {
+                            if (this.refreshMode && this.swiper.translate > window.lib.flexible.dpr * 0.5 * 120) {
+                                this.$emit('refreshing')
+                                this.swiper.setTransition(this.swiper.params.speed)
+                                this.swiper.setTranslate(window.lib.flexible.dpr * 0.5 * 80)
+                                this.swiper.touchEventsData.isTouched = false
                             }
                         },
-                        touchStart: function () {},
-                        momentumBounce: function () {}
+                        touchMove: load,
+                        transitionStart: load
                     }
                 }
             }
@@ -66,6 +77,11 @@
             position: absolute;
             line-height: 80px; /*px*/
             bottom: 100%;
+            text-align: center;
+            width: 100%;
+        }
+        &-load {
+            line-height: 80px; /*px*/
             text-align: center;
             width: 100%;
         }
