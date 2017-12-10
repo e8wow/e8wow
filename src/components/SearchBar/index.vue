@@ -42,7 +42,7 @@
     .#{$prefixCls} {
         display: flex;
         align-items: center;
-        height: 100px;
+        flex: 0 0 100px;
         background-color: $cyan-color;
         padding: 0 25px; /*px*/
         &-address {
