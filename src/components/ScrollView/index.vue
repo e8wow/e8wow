@@ -22,7 +22,8 @@
                 default: 'e8ui-scroll-view'
             },
             refreshMode: Boolean,
-            loadMode: Boolean
+            loadMode: Boolean,
+            bounce: Boolean
         },
         computed: {
             swiper () {
@@ -31,12 +32,19 @@
         },
         data () {
             const load = () => {
-                if (this.loadMode && this.swiper.wrapperEl.clientHeight + this.swiper.translate - this.swiper.height - window.lib.flexible.dpr * 0.5 * 80 <= 0) {
+                if (this.loadMode &&
+                    this.canPullUp &&
+                    !this.loading &&
+                    this.swiper.wrapperEl.clientHeight + this.swiper.translate - this.swiper.height - window.lib.flexible.dpr * 0.5 * 80 <= 0) {
                     console.log('//TODO 加载...')
+                    this.loading = true
                     this.$emit('loading')
                 }
             }
             return {
+                loading: false,
+                refreshing: false,
+                canPullUp: true,
                 options: {
                     slidesPerView: 'auto',
                     freeMode: true,
@@ -44,13 +52,17 @@
                     setWrapperSize: true,
                     roundLengths: true,
                     autoHeight: true,
-                    freeModeMomentumBounce: false,
+                    freeModeMomentumBounce: this.bounce,
                     scrollbar: {
                         el: '.swiper-scrollbar'
                     },
                     on: {
                         touchEnd: () => {
-                            if (this.refreshMode && this.swiper.translate > window.lib.flexible.dpr * 0.5 * 120) {
+                            if (this.refreshMode &&
+                                !this.refreshing &&
+                                this.swiper.translate > window.lib.flexible.dpr * 0.5 * 120) {
+                                console.log('//TODO 刷新...')
+                                this.refreshing = true
                                 this.$emit('refreshing')
                                 this.swiper.setTransition(this.swiper.params.speed)
                                 this.swiper.setTranslate(window.lib.flexible.dpr * 0.5 * 80)
@@ -63,7 +75,20 @@
                 }
             }
         },
-        methods: {}
+        methods: {
+            doneRefresh () {
+                this.refreshing = false
+            },
+            doneLoading () {
+                this.loading = false
+            },
+            enablePullup () {
+                this.canPullUp = true
+            },
+            disablePullup () {
+                this.canPullUp = false
+            }
+        }
     }
 </script>
 
